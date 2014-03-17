@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reactive Scales - Activator Template</title>
+</head>
+<body>
+<div>
+    <h2>Reactive Scales</h2>
+    
+    <p>The Reactive Scales application has been created!  This application illustrates the great performance of Reactive applications built with the Typesafe Reactive Platform.</p>
+
+    <p>
+        Right now the server is running in development mode which provides a productive environment where you just hit refresh in your browser to see your code changes.  Check the server status by going to <a href="#run" class="shortcut">Run</a>.  In development mode every request checks the file system for changes to see if something needs to be recompiled.  To run a performance test we need to disable this by running in production mode.  To do that first stop the app in <a href="#run" class="shortcut">Run</a>.  From a command line in this project's root directory run this application in production mode:
+        <ul>
+            <li>
+                On Linux and Mac:
+                <pre><code>./activator -Dpidfile.path=MY_PID start</code></pre>
+            </li>
+            <li>
+                On Windows:
+                <pre><code>activator -Dpidfile.path=MY_PID start</code></pre>
+            </li>
+        </ul>
+    </p>
+    <p>
+        The application should be started and you can open it in your browser: <a href="http://localhost:9000" target="_blank">http://localhost:9000</a>
+    </p>
+    <p>
+        There you should see three charts, one that tracks the number of requests per second, a chart that indicates how much memory this application is using, and one that shows how much CPU the application is using.  These values are pushed from the server to the client every 100 milliseconds using a Comet channel.
+    </p>
+    <p>
+        To test the performance of this application lets send one million requests to it (100 concurrent).
+        <ul>
+            <li>
+                On Linux:
+                <pre><code>./loadtest-linux-64.sh</code></pre>
+            </li>
+            <li>
+                On Mac:
+                <pre><code>./loadtest-mac-64.sh</code></pre>
+            </li>
+            <li>
+                On Windows:
+                <pre><code>loadtest-windows-64</code></pre>
+            </li>
+        </ul>
+    </p>
+    <p>
+        You should see the charts begin to dial up.  It will take 100,000 or so requests before the JVM is warmed up.  Then you should get around 40k requests per second.  (These results can vary based on number of CPUs, JVM version, and operating system.)  You will see the memory bounce around as the JVM garbage collector does it's job.  (Note: The JVM will usually try to use as much memory as it can but you can but you can hit the "Garbage Collect" button and it should always come back down to a pretty small base footprint.)  During the performance test the CPU usage should be around 75% which is not full utilization because the actual load tester is also consuming some CPU.
+    </p>
+    <p>
+        It is great that you can slam the application and get around 40k requests per second but what is really cool is that while totally saturating the app with requests the charts are still being updated every 100 milliseconds with values being pushed from the same saturated server!
+    </p>
+</div>
+</body>
+</html>
